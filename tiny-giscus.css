@@ -1,0 +1,61 @@
+.tiny-giscus {
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+    font-size: 14px;
+    gap: 1rem;
+}
+
+.tg-thread {
+    border-radius: 0.25rem;
+    border: 1px solid #d0d7de;
+}
+
+.tg-comment {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.tg-comment a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+.tg-comment a:hover {
+    text-decoration: underline;
+}
+
+.tg-reply {
+    background-color: #f6f8fa;
+    border-top: 1px solid #d0d7de;
+    padding-left: 2rem;
+}
+
+.tg-header {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.tg-avatar {
+    border: 1px solid gray;
+    border-radius: 50%;
+    width: 2rem;
+}
+
+.tg-login {
+    font-weight: bold;
+}
+
+.tg-button {
+    background-color: #2da44e;
+    border-radius: 0.25rem;
+    color: white;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.5rem;
+    text-decoration: none;
+    width: fit-content;
+}
