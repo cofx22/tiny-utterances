@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self';
         style-src 'self' 'nonce-4945033883';
-        connect-src https://api.github.com/graphql;
+        connect-src https://api.github.com/repos/;
         img-src 'self' data: https://avatars.githubusercontent.com/u/;
         object-src 'none';
         base-uri 'none'" />
-    <title>Tiny Giscus</title>
-    <link rel="stylesheet" type="text/css" href="tiny-giscus.css" />
-    <script defer src="tiny-giscus.js"></script>
+    <title>Tiny Utterances</title>
+    <link rel="stylesheet" type="text/css" href="tiny-utterances.css" />
+    <script defer src="tiny-utterances.js"></script>
     <style nonce="4945033883">
         html {
             font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
@@ -25,48 +25,50 @@
         }
 
         img {
-            width: 30rem;
+            max-width: 30rem;
         }
     </style>
   </head>
   <body>
-    <h1>Tiny Giscus</h1>
+    <h1>Tiny Utterances</h1>
 
     <p>
-        This page demonstrates <a href="https://github.com/cofx22/tiny-giscus">Tiny Giscus</a>,
-        a minimalistic alternative to <a href="https://giscus.app/nl">giscus</a>.
-        Giscus is a comment system powered by <a href="https://docs.github.com/en/discussions">Github Discussions</a>,
-        and so is Tiny Giscus.
-        Giscus is inspired by <a href="https://utteranc.es/">utterances</a>,
-        which is a comment system powered by <a href="https://docs.github.com/en/issues/tracking-your-work-with-issues">Github Issues</a>.
+        This page demonstrates <a href="https://github.com/cofx22/tiny-utterances">Tiny Utterances</a>,
+        a minimalistic alternative to <a href="https://utteranc.es/">utterances</a>.
+        Utterances is a comment system powered by <a href="https://docs.github.com/en/issues/tracking-your-work-with-issues">Github Issues</a>,
+        and so is Tiny Utterances.
     </p>
 
     <h2>Why not utterances?</h2>
 
     <p>
         I think the idea behind utterances is brilliant.
-        However, there are two reasons why I'd prefer giscus over utterances.
-        First, GitHub Discussions seem like a better fit for a comment system than GitHub Issues.
-        Second, utterances doesn't seem to be actively developed anymore.
+        However, there are two reasons why I decided to look for something else.
+        First, utterances doesn't seem to be actively developed anymore.
+        It could be that it's mostly "done", so this in itself is not the most compelling reason to dismiss it.
+        Second, I didn't feel good about the permissions it requests.
+    </p>
+
+    <img src="act-on-your-behalf-utterances.png"/>
+
+    <p>
+        Utterances needs to be able to comment on issues on my behalf and read comments on issues.
+        However, I can't tell from the permissions screen above what actions I'm allowing it to perform in my name.
+        I don't know who's to blame for this.
+        Maybe it's not possible to request fine-grained permissions.
+        Maybe utterances only requests the permissions I just mentioned, but GitHub's permissions screen is not detailed enough to reflect that.
+        Either way, I didn't feel good about this, and I didn't want to dive into its source code to see what exactly was going on.
     </p>
 
     <h2>Why not giscus?</h2>
 
     <p>
-        Giscus has more features than Tiny Giscus, hence the name.
-        There's only one thing that kept me from using it, which is the permissions it requests.
+        Giscus is a comment system powered by <a href="https://docs.github.com/en/discussions">Github Discussions</a>.
+        It is inspired by utterances.
+        The permissions it requests are again the reason for me to look elsewhere.
     </p>
 
-    <img src="act-on-your-behalf.png"/>
-
-    <p>
-        Gicus needs to be able to comment on discussions on my behalf and react to discussions and comments.
-        However, I can't tell from the permissions screen above what actions I'm allowing it to perform in my name.
-        I don't know who's to blame for this.
-        Maybe it's not possible to request fine-grained permissions.
-        Maybe giscus only requests the permissions I just mentioned, but GitHub's permissions screen is not detailed enough to reflect that.
-        Either way, I didn't feel good about this, and I didn't want to dive into its source code.
-    </p>
+    <img src="act-on-your-behalf-giscus.png"/>
 
     <h2>Why not X?</h2>
 
@@ -78,63 +80,53 @@
         Some of them have dubious reputations when it comes to respecting privacy, which I don't like.
     </p>
 
-    <h2>How to use Tiny Giscus?</h2>
+    <h2>How to use Tiny Utterances?</h2>
 
     <p>
-        Using Tiny Giscus requires five things:
+        Using Tiny Utterances requires the following things:
         <ol>
             <li>A CSS file</li>
             <li>A small JavaScript script</li>
             <li>A snippet of HTML that you include on the page that you want to enable comments for</li>
-            <li>A <a href="https://docs.github.com/en/discussions">GitHub Discussion</a></li>
-            <li>An access token that allows access to public respositories (and nothing more)</li>
+            <li>A <a href="https://docs.github.com/en/issues/tracking-your-work-with-issues">GitHub Issue</a></li>
         </ol>
 
-        Follow these steps to set up Tiny Giscus:
+        Follow these steps to set up Tiny Utterances:
         <ol>
             <li>
-                Visit the <a href="https://github.com/cofx22/tiny-giscus">GitHub repository for Tiny Giscus</a>
+                Visit the <a href="https://github.com/cofx22/tiny-utterances">GitHub repository for Tiny Utterances</a>
                 for the CSS and JavaScript.
                 Include them on the page on which you want to display comments.
                 Set the "defer" attribute on the HTML tag for the script.
             </li>
             <li>
-                Create a public GitHub repository if you don't already have one and enable discussions for this repository.
-                Start a new discussion and remember it's number.
-                You can find the number for a discussion in the URL for that discussion.
-            </li>
-            <li>
-                Create an access token in the "developer settings" for your GitHub account.
-                Ensure it can only be used to read public repositories.
+                Create a public GitHub repository if you don't already have one.
+                Create a new issue and remember it's number.
+                You can find the number of an issue in the URL for that issue.
             </li>
             <li>
                 Include the following snippet of HTML on the page on which you want to display comments:
-<pre><code>&lt;div class=&quot;tiny-giscus&quot;
-    data-access-token=&quot;ACCESS_TOKEN&quot;
+<pre><code>&lt;div class=&quot;tiny-utterances&quot;
     data-repo-owner=&quot;REPOSITORY_OWNER&quot;
     data-repo-name=&quot;REPOSITORY_NAME&quot;
-    data-discussion-number=&quot;DISCUSSION_NUMBER&quot;
+    data-issue-number=&quot;ISSUE_NUMBER&quot;
     data-max-comments=&quot;10&quot;
-    data-max-replies=&quot;10&quot;&gt;
-    &lt;a class=&quot;tg-button&quot;
-        href=&quot;https://github.com/REPOSITORY_OWNER/REPOSITORY_NAME/discussions/DISCUSSION_NUMBER&quot;&gt;
+    &lt;a class=&quot;tu-button&quot;
+        href=&quot;https://github.com/REPOSITORY_OWNER/REPOSITORY_NAME/issues/ISSUE_NUMBER&quot;&gt;
         Discuss this page on Github
     &lt;/a&gt;
 &lt;/div&gt;</code></pre>
             </li>
         </ol>
-
     </p>
 
     <h2>Comments</h2>
 
-    <div class="tiny-giscus"
-        data-access-token="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"
+    <div class="tiny-utterances"
         data-repo-owner="cofx22"
-        data-repo-name="tiny-giscus"
-        data-discussion-number="1"
-        data-max-comments="10"
-        data-max-replies="10">
-        <a class="tg-button" href="https://github.com/cofx22/tiny-giscus/discussions/1">Discuss this page on Github</a>
+        data-repo-name="tiny-utterances"
+        data-issue-number="2"
+        data-max-comments="10">
+        <a class="tu-button" href="https://github.com/cofx22/tiny-utterances/issues/2">Discuss this page on Github</a>
     </div>
 </body>
