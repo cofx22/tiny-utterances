@@ -1,3 +1,9 @@
+.tiny-utterances * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .tiny-utterances {
     display: flex;
     flex-direction: column;
@@ -9,15 +15,19 @@
 .tu-comment {
     border-radius: 0.25rem;
     border: 1px solid #d0d7de;
-    display: flex;
-    flex-direction: column;
     padding: 1rem;
+}
+
+.tu-comment > *:last-child {
+    margin-bottom: 0;
 }
 
 .tu-comment h1,
 .tu-comment h2 {
     border-bottom: 1px solid hsla(210,18%,87%,1);
-    padding-bottom: 0.3rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+    padding-bottom: 0.25rem;
 }
 
 .tu-comment a {
@@ -29,9 +39,40 @@
     text-decoration: underline;
 }
 
+.tu-comment code {
+    background-color: #f6f8fa;
+    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+    font-size: 85%;
+    padding: 0.2rem 0.4rem;
+}
+
+.tu-comment p {
+    margin-bottom: 1rem;
+}
+
+.tu-comment pre {
+    background-color: #f6f8fa;
+    border-radius: 0.25rem;
+    padding: 1rem;
+}
+
+.tu-comment ul,
+.tu-comment ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
 .tu-comment ul.contains-task-list {
     list-style-type: none;
     padding: 0;
+}
+
+.tu-comment ul.contains-task-list li {
+    padding-left: 0.25rem;
+}
+
+.tu-comment ul.contains-task-list li input {
+    margin-right: 0.25rem;
 }
 
 .tu-comment blockquote {
@@ -50,6 +91,7 @@
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .tu-avatar {
@@ -62,7 +104,7 @@
     font-weight: bold;
 }
 
-.tu-button {
+a.tu-button {
     background-color: #2da44e;
     border-radius: 0.25rem;
     color: white;
@@ -70,5 +112,11 @@
     font-weight: 600;
     padding: 0.5rem;
     text-decoration: none;
+    transition: 80ms;
+    transition-property: background-color;
     width: fit-content;
+}
+
+a.tu-button:hover {
+    background-color: #2c974b;
 }
