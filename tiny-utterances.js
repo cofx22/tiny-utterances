@@ -11,10 +11,12 @@ const fetchComments = async (
             }
         }
     );
+
     if (response.status == 200) {
         return response.json();
     }
-    return await Promise.reject(new Error("Comments not found"));
+
+    throw new Error("Unexpected status: " + response.status);
 }
 
 const renderComment = comment => {
