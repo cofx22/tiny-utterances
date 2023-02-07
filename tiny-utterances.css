@@ -32,11 +32,22 @@
 
 .tu-comment a {
     color: #0969da;
+    font-weight: 400;
     text-decoration: none;
 }
 
+.tu-comment a.user-mention {
+    color: black;
+    font-weight: 600;
+}
+
 .tu-comment a:hover {
+    color: #0969da;
     text-decoration: underline;
+}
+
+.tu-comment a.user-mention:hover {
+    color: black;
 }
 
 .tu-comment code {
