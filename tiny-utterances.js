@@ -25,8 +25,8 @@ const renderComment = comment => {
     return `<div class="tu-comment">
                 <div class="tu-header">
                     <img class="tu-avatar" src=${comment.user.avatar_url} />
-                    <span class="tu-login">${comment.user.login}</span>
-                    <span class="tu-created-at">${createdAt}</span>
+                    <span class="tu-login"><a class="user-mention" href="${comment.user.html_url}">${comment.user.login}</a></span>
+                    <span class="tu-created-at"><a href="${comment.html_url}">${createdAt}</a></span>
                 </div>
                 ${comment.body_html}
             </div>`;
