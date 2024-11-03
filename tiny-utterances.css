@@ -13,8 +13,13 @@
 }
 
 .tu-comment {
+    --code-background: #f6f8fa;
+    --light-border: #d0d7de;
+    --link: #0969da;
+    --timestamp: rgb(108, 117, 125);
+
     border-radius: 0.25rem;
-    border: 1px solid #d0d7de;
+    border: 1px solid var(--light-border);
     padding: 1rem;
 }
 
@@ -23,11 +28,11 @@
 }
 
 .tu-comment .tu-created-at a {
-    color: rgb(108, 117, 125);
+    color: var(--timestamp);
 }
 
 .tu-comment .tu-created-at a:hover {
-    color: rgb(108, 117, 125);
+    color: var(--timestamp);
 }
 
 .tu-comment h1,
@@ -39,7 +44,7 @@
 }
 
 .tu-comment a {
-    color: #0969da;
+    color: var(--link);
     font-weight: 400;
     text-decoration: none;
 }
@@ -50,7 +55,7 @@
 }
 
 .tu-comment a:hover {
-    color: #0969da;
+    color: var(--link);
     text-decoration: underline;
 }
 
@@ -59,7 +64,7 @@
 }
 
 .tu-comment code {
-    background-color: #f6f8fa;
+    background-color: var(--code-background);
     font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
     font-size: 85%;
     padding: 0.2rem 0.4rem;
@@ -70,7 +75,7 @@
 }
 
 .tu-comment pre {
-    background-color: #f6f8fa;
+    background-color: var(--code-background);
     border-radius: 0.25rem;
     padding: 1rem;
 }
@@ -95,7 +100,7 @@
 }
 
 .tu-comment blockquote {
-    border-left: 0.25rem solid #d0d7de;
+    border-left: 0.25rem solid var(--light-border);
     margin: 0 0 1rem;
     padding: 0 1rem;
 }
