@@ -19,14 +19,49 @@ const fetchComments = async (
     throw new Error("Unexpected status: " + response.status);
 }
 
+const condensedFormatter = new Intl.DateTimeFormat("en-US", {dateStyle: "medium"});
+const fullFormatter = new Intl.DateTimeFormat("en-US", {month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric", timeZoneName: "short"});
+
+const humanize = timestamp => {
+    const now = new Date().getTime();
+    const delta = now - timestamp;
+
+    if (delta == 0) {
+        return "now";
+    } else if (delta == 1) {
+        return "one second ago";
+    } else if (delta < 60) {
+        return `${delta} seconds ago`;
+    }
+
+    const deltaInMinutes = Math.round(delta / 60);
+    
+    if (deltaInMinutes == 1) {
+        return "one minute ago";
+    } else if (deltaInMinutes < 60) {
+        return `${deltaInMinutes} minutes ago`;
+    }
+
+    const deltaInHours = Math.round(deltaInMinutes / 60);
+
+    if (deltaInHours == 1) {
+        return "one hour ago";
+    } else if (deltaInHours < 24) {
+        return `${deltaInHours} hours ago`;
+    }
+
+    return condensedFormatter.format(new Date(timestamp));
+}
+
 const renderComment = comment => {
-    const createdAt = new Date(comment.created_at).toLocaleString(undefined, {dateStyle: "long", timeStyle:"medium"});
+    const createdAtHumanized = humanize(comment.created_at);
+    const createdAtFull = fullFormatter.format(new Date(comment.created_at));
 
     return `<div class="tu-comment">
                 <div class="tu-header">
                     <img class="tu-avatar" src=${comment.user.avatar_url} />
                     <span class="tu-login"><a class="user-mention" href="${comment.user.html_url}">${comment.user.login}</a></span>
-                    <span class="tu-created-at"><a href="${comment.html_url}">${createdAt}</a></span>
+                    <span class="tu-created-at" title="${createdAtFull}"><a href="${comment.html_url}">${createdAtHumanized}</a></span>
                 </div>
                 ${comment.body_html}
             </div>`;
