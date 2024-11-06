@@ -28,10 +28,10 @@
 
     const renderRelativeCommentedOn = (timestamp, url) =>
         `commented <a href="${url}">${timestamp}</a>`;
-    
+
     const renderCommentedOn = (timestamp, url) => {
         const now = new Date().getTime();
-        const delta = now - timestamp;
+        const delta = Math.round((now - timestamp.getTime()) / 1000);
     
         if (delta == 0) {
             return renderRelativeCommentedOn("now", url);
@@ -61,8 +61,9 @@
     };
     
     const renderComment = comment => {
-        const commentedOn = renderCommentedOn(comment.created_at, comment.html_url);
-        const createdAtFull = fullFormatter.format(new Date(comment.created_at));
+        const timestamp = new Date(comment.created_at)
+        const commentedOn = renderCommentedOn(timestamp, comment.html_url);
+        const createdAtFull = fullFormatter.format(timestamp);
     
         return `<div class="tu-comment">
                     <div class="tu-header">
