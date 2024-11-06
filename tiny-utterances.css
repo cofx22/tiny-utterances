@@ -27,14 +27,6 @@
     margin-bottom: 0;
 }
 
-.tu-comment .tu-created-at a {
-    color: var(--timestamp);
-}
-
-.tu-comment .tu-created-at a:hover {
-    color: var(--timestamp);
-}
-
 .tu-comment h1,
 .tu-comment h2 {
     border-bottom: 1px solid hsla(210,18%,87%,1);
@@ -114,18 +106,31 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
 .tu-avatar {
     border: 1px solid gray;
     border-radius: 50%;
+    margin-right: 0.5rem;
     width: 2rem;
 }
 
 .tu-login {
     font-weight: bold;
+}
+
+.tu-login a {
+    color: black;
+    font-weight: bold;
+}
+
+.tu-created-at {
+    color: var(--timestamp);
+}
+
+.tu-created-at a {
+    color: var(--timestamp);
 }
 
 a.tu-button {

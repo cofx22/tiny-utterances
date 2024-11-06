@@ -18,55 +18,61 @@
         }
     
         throw new Error("Unexpected status: " + response.status);
-    }
+    };
     
     const condensedFormatter = new Intl.DateTimeFormat("en-US", {dateStyle: "medium"});
     const fullFormatter = new Intl.DateTimeFormat("en-US", {month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "numeric", timeZoneName: "short"});
     
-    const humanize = timestamp => {
+    const renderAbsoluteCommentedOn = (timestamp, url) =>
+        `commented on <a href="${url}">${timestamp}</a>`;
+
+    const renderRelativeCommentedOn = (timestamp, url) =>
+        `commented <a href="${url}">${timestamp}</a>`;
+    
+    const renderCommentedOn = (timestamp, url) => {
         const now = new Date().getTime();
         const delta = now - timestamp;
     
         if (delta == 0) {
-            return "now";
+            return renderRelativeCommentedOn("now", url);
         } else if (delta == 1) {
-            return "one second ago";
+            return renderRelativeCommentedOn("one second ago", url);
         } else if (delta < 60) {
-            return `${delta} seconds ago`;
+            return renderRelativeCommentedOn(`${delta} seconds ago`, url);
         }
     
         const deltaInMinutes = Math.round(delta / 60);
         
         if (deltaInMinutes == 1) {
-            return "one minute ago";
+            return renderRelativeCommentedOn("one minute ago", url);
         } else if (deltaInMinutes < 60) {
-            return `${deltaInMinutes} minutes ago`;
+            return renderRelativeCommentedOn(`${deltaInMinutes} minutes ago`, url);
         }
     
         const deltaInHours = Math.round(deltaInMinutes / 60);
     
         if (deltaInHours == 1) {
-            return "one hour ago";
+            return renderRelativeCommentedOn("one hour ago", url);
         } else if (deltaInHours < 24) {
-            return `${deltaInHours} hours ago`;
+            return renderRelativeCommentedOn(`${deltaInHours} hours ago`, url);
         }
     
-        return condensedFormatter.format(new Date(timestamp));
-    }
+        return renderAbsoluteCommentedOn(condensedFormatter.format(new Date(timestamp)), url);
+    };
     
     const renderComment = comment => {
-        const createdAtHumanized = humanize(comment.created_at);
+        const commentedOn = renderCommentedOn(comment.created_at, comment.html_url);
         const createdAtFull = fullFormatter.format(new Date(comment.created_at));
     
         return `<div class="tu-comment">
                     <div class="tu-header">
-                        <img class="tu-avatar" src=${comment.user.avatar_url} />
-                        <span class="tu-login"><a class="user-mention" href="${comment.user.html_url}">${comment.user.login}</a></span>
-                        <span class="tu-created-at" title="${createdAtFull}"><a href="${comment.html_url}">${createdAtHumanized}</a></span>
+                        <a href="${comment.user.html_url}"><img class="tu-avatar" src=${comment.user.avatar_url} /></a>
+                        <span class="tu-login"><a href="${comment.user.html_url}">${comment.user.login}</a>&nbsp;</span>
+                        <span class="tu-created-at" title="${createdAtFull}">${commentedOn}</span>
                     </div>
                     ${comment.body_html}
                 </div>`;
-    }
+    };
     
     const renderButton = (noComments, repoName, repoOwner, issueNumber) => {
         const text = noComments ? "Be the first to comment on GitHub" : "Join the discussion on GitHub";
